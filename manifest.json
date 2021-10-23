@@ -1,0 +1,16 @@
+{
+  "name": "Bootstrap Grid Overlay",
+  "description": "Simple overlay, which shows the current Boostrap's grid",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "javascripts/background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
