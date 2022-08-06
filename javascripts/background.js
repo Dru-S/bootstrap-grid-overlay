@@ -1,6 +1,5 @@
 //
 
-let done = false;
 
 chrome.action.onClicked.addListener((tab) => {
   chrome.scripting.executeScript({
