@@ -8,9 +8,10 @@
   },
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_title": "Click to show an alert"
   }
 }
