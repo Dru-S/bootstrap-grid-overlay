@@ -1,0 +1,151 @@
+/* https://coolors.co/add7f6-87bfff-3f8efc-2667ff-3b28cc */
+
+.bgo {
+  --bgo-primary:       #0022e3;
+  --bgo-secondary:     #ff8500;
+  --bgo-radius:        6px;
+  --bgo-tools-height:  32px;
+  --bgo-tools-spacing: 16px;
+
+  font-family: 'Public Sans', sans-serif;
+  line-height: normal;
+}
+
+.bgo_wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+
+.bgo_wrapper.__loading {
+  opacity: 0;
+}
+
+.bgo_grid {
+  width: 100%;
+  height: 100%;
+}
+
+.bgo_grid * {
+  height: 100%;
+}
+
+.bgo_inner {
+  background: #000;
+  border-style: solid;
+  border-width: 0;
+  opacity: .5;
+  transition: all .35s ease;
+}
+
+.bgo_wrapper.__hidden .bgo_inner {
+  opacity: 0;
+}
+
+/**/
+
+.bgo_tools {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--bgo-tools-spacing);
+  border-radius: var(--bgo-tools-spacing);
+  margin: var(--bgo-tools-spacing);
+  padding: var(--bgo-tools-spacing);
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+}
+
+.bgo_tools__i {
+  display: flex;
+  align-items: center;
+  gap: 5px 10px;
+}
+
+.bgo_tools__i:not(:last-child)::after {
+  content: '';
+  width: 1px;
+  height: var(--bgo-tools-height);
+  background: #000;
+  margin-left: 5px;
+  display: block;
+  opacity: .4;
+}
+
+.bgo_tools__i * {
+  pointer-events: auto;
+}
+
+.bgo_tools__i button {
+  font-size: 12px;
+  letter-tools-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: var(--bgo-radius);
+  background: var(--bgo-primary);
+  color: #fff;
+  height: var(--bgo-tools-height);
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 15px;
+  border: 0;
+  fill: currentColor;
+}
+
+.bgo_tools__i label {
+  font-size: 12px;
+  letter-tools-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.bgo_tools__i input,
+.bgo_tools__i select {
+  font-size: 14px;
+  padding: 5px;
+  height: var(--bgo-tools-height);
+  border-radius: var(--bgo-radius);
+  background: #fff;
+  border: 2px solid var(--bgo-primary);
+}
+
+.bgo_tools__i input[type="color"] {
+  width: var(--bgo-tools-height);
+  height: var(--bgo-tools-height);
+  padding: 0;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.bgo_tools__i input[type="color"]::-webkit-color-swatch {
+  border: 0;
+}
+
+.bgo_tools__i[data-tool="container"] select {
+  width: 135px;
+}
+
+.bgo_tools__i[data-tool="columns"] input[type="number"],
+.bgo_tools__i[data-tool="border"] input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+
+.bgo_tools__i[data-tool="delete"] button {
+  padding: 5px;
+}
+
+.bgo_tools__i[data-tool="delete"] button svg {
+  width: 100%;
+  height: 100%;
+}

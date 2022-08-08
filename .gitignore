@@ -1,0 +1,23 @@
+# OSX
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+## IDE
+.idea/
+.vscode/
+
+## Misc
+.htaccess
+.htpasswd
+/vendor/
+
+## Logs
+/logs/
+# /*.log
+# logs
+# *.log
