@@ -5,7 +5,7 @@ if (!window.BGO) {
 
   window.BGO._ = null;
 
-  window.BGO.isDebug = false;
+  window.BGO.isDebug = true;
 
   window.BGO.settings = {};
 
@@ -19,8 +19,8 @@ if (!window.BGO) {
       container:   'container',
       columns:     12,
       opacity:     .5,
-      background:  'rgb(255, 133, 0)', // RGB value for secondary color in CSS (--bgo-secondary)
-      borderColor: 'rgb(0, 34, 277)',  // RGB value for primary color in CSS (--bgo-primary)
+      background:  '#ff8500', // RGB value for secondary color in CSS (--bgo-secondary)
+      borderColor: '#0022e3',  // RGB value for primary color in CSS (--bgo-primary)
       borderWidth: 0,
     }
 
