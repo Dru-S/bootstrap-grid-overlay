@@ -1,8 +1,12 @@
 if (!window.bgo) {
 
   window.bgo = {};
-  window.bgo.fn = {};
 
+  window.bgo._ = null;
+
+  window.bgo.settings = {};
+
+  window.bgo.fn = {};
   window.bgo.fn.install = async () => {
 
     // Set some defaults settings
@@ -23,7 +27,7 @@ if (!window.bgo) {
     }
 
     window.bgo.settings = localStorageSettings.bgo;
-    console.log(window.bgo.settings);
+    console.table(window.bgo.settings);
 
     const stylesUrl = chrome.runtime.getURL('stylesheets/content.css');
 
@@ -112,8 +116,6 @@ if (!window.bgo) {
     const container = window.bgo._.querySelector('.bgo_container');
     const row       = window.bgo._.querySelector('.bgo_row');
     //
-    let inners = window.bgo._.querySelectorAll('.bgo_inner');
-    //
     const toolToggle      = window.bgo._.querySelector('.bgo_tools__i[data-tool="toggle"] > button');
     const toolColumns     = window.bgo._.querySelector('.bgo_tools__i[data-tool="columns"] > input');
     const toolContainer   = window.bgo._.querySelector('.bgo_tools__i[data-tool="container"] > select');
@@ -122,8 +124,14 @@ if (!window.bgo) {
     const toolBorderWidth = window.bgo._.querySelector('.bgo_tools__i[data-tool="border"] > input[type="number"]');
     const toolDelete      = window.bgo._.querySelector('.bgo_tools__i[data-tool="delete"] > button');
 
+    // Update the current backgroung and border, by setting some CSS variables
+    window.bgo._.style.setProperty('--bgo-inner-background',   window.bgo.settings.background);
+    window.bgo._.style.setProperty('--bgo-inner-border-color', window.bgo.settings.borderColor);
+    window.bgo._.style.setProperty('--bgo-inner-border-width', `${window.bgo.settings.borderWidth}px`);
+
+    // Basically show the element, without any fancy "animation" (or better, glitch)
     setTimeout(() => {
-      window.bgo._.style = '';
+      window.bgo._.style.display = '';
       wrapper.classList.remove('__loading');
     });
 
@@ -133,8 +141,7 @@ if (!window.bgo) {
       window.bgo.settings.columns = +e.target.value;
       window.bgo.fn.localStorage.set({ bgo: window.bgo.settings }).then(() => {
         row.innerHTML = window.bgo.fn.columns(window.bgo.settings.columns);
-        inners = window.bgo._.querySelectorAll('.bgo_inner');
-      })
+      });
     });
 
     toolContainer.addEventListener('change', (e) => {
@@ -142,22 +149,28 @@ if (!window.bgo) {
       window.bgo.fn.localStorage.set({ bgo: window.bgo.settings }).then(() => {
         container.classList.remove(...containerClasses);
         container.classList.add(window.bgo.settings.container);
-      })
+      });
     });
 
     toolBackground.addEventListener('input', (e) => {
-      inners.forEach(el => el.style.backgroundColor = e.target.value);
+      window.bgo.settings.background = e.target.value;
+      window.bgo.fn.localStorage.set({ bgo: window.bgo.settings }).then(() => {
+        window.bgo._.style.setProperty('--bgo-inner-background',   window.bgo.settings.background);
+      });
     });
 
     toolBorderColor.addEventListener('input', (e) => {
-      inners.forEach(el => el.style.borderColor = e.target.value);
+      window.bgo.settings.borderColor = e.target.value;
+      window.bgo.fn.localStorage.set({ bgo: window.bgo.settings }).then(() => {
+        window.bgo._.style.setProperty('--bgo-inner-border-color', window.bgo.settings.borderColor);
+      });
     });
 
     toolBorderWidth.addEventListener('input', (e) => {
-      inners.forEach(el => {
-        el.style.borderLeftWidth = `${e.target.value}px`;
-        el.style.borderRightWidth = `${e.target.value}px`;
-      });
+      window.bgo.settings.borderWidth = e.target.value;
+      window.bgo.fn.localStorage.set({ bgo: window.bgo.settings }).then(() => {
+        window.bgo._.style.setProperty('--bgo-inner-border-width', `${window.bgo.settings.borderWidth}px`);
+      })
     });
 
     toolDelete.addEventListener('click', (e) => window.bgo.fn.uninstall());

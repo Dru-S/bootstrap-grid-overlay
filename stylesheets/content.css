@@ -1,11 +1,14 @@
 /* https://coolors.co/add7f6-87bfff-3f8efc-2667ff-3b28cc */
 
 .bgo {
-  --bgo-primary:       #0022e3;
-  --bgo-secondary:     #ff8500;
-  --bgo-radius:        6px;
-  --bgo-tools-height:  32px;
-  --bgo-tools-spacing: 16px;
+  --bgo-primary:            #0022e3;
+  --bgo-secondary:          #ff8500;
+  --bgo-radius:             6px;
+  --bgo-tools-height:       32px;
+  --bgo-tools-spacing:      16px;
+  --bgo-inner-background:   #ff8500;
+  --bgo-inner-border-color: #0022e3;
+  --bgo-inner-border-width: 0;
 
   font-family: 'Public Sans', sans-serif;
   line-height: normal;
@@ -17,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  /* pointer-events: none; */
   z-index: 10000;
   opacity: 1;
   transition: opacity .35s ease;
@@ -37,11 +40,15 @@
 }
 
 .bgo_inner {
-  background: #000;
-  border-style: solid;
   border-width: 0;
+  border-style: solid;
   opacity: .5;
   transition: all .35s ease;
+  /**/
+  background:         var(--bgo-inner-background);
+  border-color:       var(--bgo-inner-border-color);
+  border-left-width:  var(--bgo-inner-border-width);
+  border-right-width: var(--bgo-inner-border-width);
 }
 
 .bgo_wrapper.__hidden .bgo_inner {
