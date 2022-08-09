@@ -18,7 +18,7 @@
     "storage"
   ],
   "action": {
-    "default_title": "Click to show an alert"
+    "default_title": "Show the grid!"
   },
   "web_accessible_resources": [
     {
