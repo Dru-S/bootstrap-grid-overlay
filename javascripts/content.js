@@ -5,7 +5,7 @@ if (!window.BGO) {
 
   window.BGO._ = null;
 
-  window.BGO.isDebug = true;
+  window.BGO.isDebug = false;
 
   window.BGO.settings = {};
 
